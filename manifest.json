@@ -1,0 +1,11 @@
+{
+    "name": "Bookmark Browser",
+    "description": "Google Bookmarks browser",
+    "version": "0.1",
+    "permissions": ["https://www.google.com/"],
+    "app": {
+        "launch": {
+            "local_path": "app.html"
+        }
+    }
+}
