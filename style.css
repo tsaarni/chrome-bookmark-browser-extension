@@ -1,0 +1,78 @@
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+
+a:link {
+    text-decoration: none
+}
+
+a:visited {
+    text-decoration: none
+}
+
+a:active {
+    text-decoration: none
+}
+
+
+.mod_titlebar {
+    padding: 20px 40px 20px 40px;
+
+    background: #f4f4f4;
+    //background-image: -webkit-linear-gradient(bottom, #f8f8f8 0%, #e8e8e8 100%);
+    font-size: 150%;
+}
+
+.mod_titlebar h1 {
+    font-size: 3em;
+    letter-spacing: -1px;
+}
+
+.heading {
+
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.mod_labels {
+    line-height: 1.5;
+}
+
+
+.label {
+    border-radius: 3px;
+    padding: 1px 4px;
+    margin: 2px;
+}
+
+.mod_labels .label {
+    background-color: #3090dd;
+    color: #fff;
+}
+
+.mod_labels .label:hover {
+    background-color: #40a0ed;
+}
+
+.mod_labels .label.active {
+    background-color: #dd5330;
+}
+
+.mod_bookmarks .bookmark {
+    padding: 7px 0px;
+}
+
+.mod_bookmarks .label {
+    color: #808080;
+    background-color: #e8e8f0;
+}
+
+.mod_bookmarks .domain {
+    color: #789880;
+}

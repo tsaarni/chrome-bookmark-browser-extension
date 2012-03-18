@@ -7,15 +7,34 @@
   <title>Bookmarks</title>
   <body>
 
-    <div class="label" data-bind="foreach: labels">
-      <a href="#" class="label" data-bind="click: $root.selectLabel, css: { 'active': selected() }">
-        <span data-bind="text: label"> </span> (<span data-bind="text: frequency"> </span>)
-      </a>
+    <!-- body -->
+
+    <div class="mod_titlebar">
+      <h1 class="heading">jumpstart</h1>
+      <p class="heading">bookmarks browser</p>
     </div>
 
-    <div class="bookmark" data-bind="foreach: bookmarks">
-      <a data-bind="attr: { href: url }, text: title"> </a>
-    </div>
+    <div class="mod_labels" data-bind="template: { name: 'label', foreach: labels }"></div>
+    <div class="mod_bookmarks" data-bind="template: { name: 'bookmark', foreach: bookmarks }"></div>
+
+
+    <!-- templates -->
+
+    <script id="label" type="text/html">
+      <a href="#" class="label" data-bind="click: $root.selectLabel, css: { 'active': selected() }">
+        <span class="label-text" data-bind="text: label"></span> <span class="label-frequency" data-bind="text: frequency"></span>
+      </a>
+    </script>
+
+    <script id="bookmark" type="text/html">
+      <div class="bookmark">
+        <a data-bind="attr: { href: url }, text: title"></a> - <span class="domain" data-bind="text: domain"></span>
+        <div data-bind="foreach: labels"><span class="label" data-bind="text: $data"></span></div> 
+      </div>
+    </script>
+
+
+    <!-- scripts -->
 
     <script src="libs/knockout-2.0.0.js" type="text/javascript"></script>
     <script src="libs/jquery-1.7.1.min.js" type="text/javascript"></script>
