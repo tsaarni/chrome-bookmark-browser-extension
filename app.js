@@ -91,11 +91,13 @@ function GoogleBookmarksLoader() {
             for (var i=0; i<labelNodes.length; i++) {
                 labelTexts.push(labelNodes[i].childNodes[0].nodeValue);
             }
+            var url = node.getElementsByTagName("url")[0].childNodes[0].nodeValue;
             bookmarks.push(
                 { 'title': node.getElementsByTagName("title")[0].childNodes[0].nodeValue,
-                  'url': node.getElementsByTagName("url")[0].childNodes[0].nodeValue,
+                  'url': url,
                   'id': node.getElementsByTagName("id")[0].childNodes[0].nodeValue,
-                  'labels': labelTexts
+                  'labels': labelTexts,
+                  'domain': url.match(/:\/\/(.[^/]+)/)[1],
                 });
         }
 
@@ -110,7 +112,7 @@ function BookmarksViewModel() {
     var self = this    
     self.loader = undefined;
 
-    self.labels = undefined;
+    self.labels = ko.observableArray([]);
     self.bookmarks = ko.observableArray([]);
 
 
@@ -125,13 +127,16 @@ function BookmarksViewModel() {
                 selectedLabels.push(l.label);
             }
         }
-
-        self.bookmarks(self.loader.getBookmarks(selectedLabels));
+        if (selectedLabels.length > 0) {
+            self.bookmarks(self.loader.getBookmarks(selectedLabels));
+        } else {
+            self.bookmarks.destroyAll();
+        }
     }
 
     self.populate = function(loader) {
         self.loader = loader
-        self.labels = ko.observableArray(loader.getLabels());
+        self.labels(loader.getLabels());
         ko.applyBindings(self);
     }
 
